@@ -2,6 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { error } from 'console';
+import userRouter from '../api/route/user.route.js'
+
 dotenv.config();
 const app = express();
 
@@ -20,4 +22,17 @@ mongoose.connect(process.env.MONGO)
 const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`)
-})
+});
+
+
+// Api route , this is not the best practice 
+
+// app.get('/test',(req,res)=>{
+//     res.send("Hello chairman ")
+// })
+
+//All route 
+//import userRouter from '../api/route/user.route.js'
+
+
+app.use('/api/user',userRouter);
